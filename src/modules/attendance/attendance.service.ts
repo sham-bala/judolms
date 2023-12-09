@@ -16,7 +16,7 @@ export async function insertAttendance(
       FROM attendances
       WHERE student_id = ${studentId} AND lesson_id = ${lessonId};
     `;
-    console.log("result", result);
+
     if (result.rowCount) {
       await sql`
       DELETE FROM attendances

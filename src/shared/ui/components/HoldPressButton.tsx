@@ -17,15 +17,14 @@ export default function HoldPressButton(props: HoldPressButtonProps) {
       console.log("fired event");
     },
     {
-      onStart: (event) => {
-        event.preventDefault();
-        console.log("Press started");
-      },
+      onStart: (event) => console.log("Press started"),
       onFinish: (event) => console.log("Press Finished"),
       onCancel: (event) => console.log("Press cancelled"),
       threshold: 100,
     }
   );
+
+  console.log("attrs", attrs);
 
   const actived =
     "border bg-primary text-primary-foreground  shadow hover:bg-primary/90";
