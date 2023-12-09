@@ -17,7 +17,10 @@ export default function HoldPressButton(props: HoldPressButtonProps) {
       console.log("fired event");
     },
     {
-      onStart: (event) => console.log("Press started"),
+      onStart: (event) => {
+        event.preventDefault();
+        console.log("Press started");
+      },
       onFinish: (event) => console.log("Press Finished"),
       onCancel: (event) => console.log("Press cancelled"),
       threshold: 100,
@@ -37,7 +40,7 @@ export default function HoldPressButton(props: HoldPressButtonProps) {
       )}
       type="submit"
     >
-      {isChecked ? "присутствует" : "ожидании"}
+      {isChecked ? "Присутствует" : "отсутствуют"}
     </button>
   );
 }
