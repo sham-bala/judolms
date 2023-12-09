@@ -4,14 +4,22 @@ type AttendanceStudent = Pick<
   Student,
   "id" | "image_source" | "name" | "surname" | "age"
 > & {
-  is_present?: boolean;
+  isPresent: boolean;
 };
 
 export type Attendance = {
   id: string;
+  studentId: string;
+  lessonId: string;
+};
+
+export type AttendanceWithStudents = {
+  id: string;
+  groupId: string;
   groupName: string;
+  lessonId: string;
   lessonStart: string;
-  lenssonEnd: boolean;
+  lessonEnd: boolean;
   students: AttendanceStudent[];
 };
 

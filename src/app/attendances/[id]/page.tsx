@@ -1,4 +1,4 @@
-import { getAttendances } from "@/modules/attendance/attendance.service";
+import { getAttendance } from "@/modules/attendance/attendance.service";
 import { List } from "@/shared/ui/components/List";
 import ListItem from "@/shared/ui/components/ListItem";
 import { notFound } from "next/navigation";
@@ -10,20 +10,23 @@ type PageProps = {
 };
 
 const Page: FC<PageProps> = async ({ params: { id } }) => {
-  const attendances = await getAttendances(id);
+  const attendance = await getAttendance(id);
 
-  if (!attendances) {
+  if (!attendance) {
     notFound();
   }
 
   return (
     <div className="container mx-auto px-4">
-      <List title={attendances.groupName} />
-      {attendances.students.length ? (
+      <List title={attendance.groupName} />
+      {attendance.students.length ? (
         <div className="space-y-4 rounded-xl p-6 border bg-card text-card-foreground">
-          {attendances.students.map((student) => {
+          {attendance.students.map((student) => {
             return (
               <ListItem
+                isPresent={student.isPresent}
+                lessonId={attendance.lessonId}
+                studentId={student.id}
                 key={student.id}
                 fullName={`${student.name} ${student.surname}`}
                 age={student.age}

@@ -260,9 +260,7 @@ async function createAttendance(client) {
         id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
         student_id UUID REFERENCES students(id),
         lesson_id UUID REFERENCES schedules(id),
-        is_present BOOLEAN DEFAULT false NOT NULL,
-        attendance_date TIMESTAMPTZ NOT NULL,
-        CONSTRAINT unique_attendance_entry UNIQUE (student_id, lesson_id, attendance_date)
+        CONSTRAINT unique_attendance_entry UNIQUE (student_id, lesson_id)
     );
         `;
 
